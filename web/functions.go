@@ -41,7 +41,7 @@ func Convert(w http.ResponseWriter, r *http.Request) {
 		data := &convert{RNAValue: converted, Data: helpers.Information(r), DNAValue: format, ProteinValue: protein}
 
 		templates.Execute(w, data)
-	} else if (r.FormValue("type") == "RNA") {
+	} else {
 		templates, _ := template.ParseFiles("views/convert.html")
 
 		format := helpers.AddSpace(r.FormValue("sequence"))
@@ -53,7 +53,5 @@ func Convert(w http.ResponseWriter, r *http.Request) {
 		data := &convert{DNAValue: converted, Data: helpers.Information(r), RNAValue: format, ProteinValue: protein}
 
 		templates.Execute(w, data)
-	} else {
-
 	}
 }
