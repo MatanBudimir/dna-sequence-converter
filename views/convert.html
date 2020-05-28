@@ -72,8 +72,12 @@
         <br>
     {{ end }}
     {{ if .RNAValue }}
-    <h6 style="color:white;">mRNA Sequence</h6>
+    <h6 style="color:white;">mRNA Sequence (Codon)</h6>
     <textarea readonly class="form-control">{{ .RNAValue }}</textarea>
+    {{ end }}
+    {{ if .TRNAValue }}
+        <h6 style="color:white;">tRNA Sequence (Anticodon)</h6>
+        <textarea readonly class="form-control">{{ .TRNAValue }}</textarea>
     {{ end }}
     {{ if .ProteinValue }}
     <h6 style="color:white;">Protein Sequence</h6>
