@@ -48,7 +48,9 @@ func Convert(w http.ResponseWriter, r *http.Request) {
 
 		converted := helpers.ConvertDNA(format, w, r)
 
-		data := &convert{DNAValue: converted, Data: helpers.Information(r), RNAValue: format}
+		protein := helpers.Protein(format, w, r)
+
+		data := &convert{DNAValue: converted, Data: helpers.Information(r), RNAValue: format, ProteinValue: protein}
 
 		templates.Execute(w, data)
 	} else {
