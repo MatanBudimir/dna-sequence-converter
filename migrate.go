@@ -259,10 +259,13 @@ func main() {
 	}
 
 	for _, value := range proteins {
+
 		e, err := stmt.Exec(value.Protein, value.Sequence, value.Name)
 		if err != nil {
+
 			log.Fatal(err)
 		}
+
 		fmt.Println(e)
 	}
 
