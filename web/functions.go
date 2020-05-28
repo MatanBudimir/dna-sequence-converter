@@ -55,3 +55,11 @@ func Convert(w http.ResponseWriter, r *http.Request) {
 		templates.Execute(w, data)
 	}
 }
+
+func Redirect(w http.ResponseWriter, r *http.Request) {
+	if r.FormValue("url") == "" {
+		http.Redirect(w, r, "/", 308)
+	}
+
+	http.Redirect(w, r, r.FormValue("url"), 308)
+}
