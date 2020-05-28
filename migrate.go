@@ -27,7 +27,13 @@ func connect() *sql.DB {
 func main() {
 	db := connect()
 
-	stmt, err := db.Prepare("INSERT INTO proteins SET protein = ?, sequence = ?")
+	_, err := db.Exec("CREATE TABLE IF NOT EXISTS `proteins` (`id` int(11) NOT NULL auto_increment, `protein` varchar(255) NOT NULL, `name` varchar(255)  NOT NULL, `sequence`  varchar(255) NOT NULL, PRIMARY KEY (id));")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	stmt, err := db.Prepare("INSERT INTO proteins SET protein = ?, sequence = ?, name = ?")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -39,52 +45,52 @@ func main() {
 		 */
 
 		{
-			"Phe", "UUU",
+			"Phe", "UUU", "Phenylalanine",
 		},
 		{
-			"Phe", "UUC",
+			"Phe", "UUC", "Phenylalanine",
 		},
 		{
-			"Leu", "UUA",
+			"Leu", "UUA", "Leucine",
 		},
 		{
-			"Leu", "UUG",
+			"Leu", "UUG", "Leucine",
 		},
 		{
-			"Ser", "UCU",
+			"Ser", "UCU", "Serine",
 		},
 		{
-			"Ser", "UCC",
+			"Ser", "UCC", "Serine",
 		},
 		{
-			"Ser", "UCA",
+			"Ser", "UCA", "Serine",
 		},
 		{
-			"Ser", "UCG",
+			"Ser", "UCG", "Serine",
 		},
 		{
-			"Tyr", "UAU",
+			"Tyr", "UAU", "Tyrosine",
 		},
 		{
-			"Tyr", "UAC",
+			"Tyr", "UAC", "Tyrosine",
 		},
 		{
-			"STOP", "UAA",
+			"STOP", "UAA", "Ochre (STOP)",
 		},
 		{
-			"STOP", "UAG",
+			"STOP", "UAG", "Amber (STOP)",
 		},
 		{
-			"Cys", "UGU",
+			"Cys", "UGU", "Cysteine",
 		},
 		{
-			"Cys", "UGC",
+			"Cys", "UGC", "Cysteine",
 		},
 		{
-			"STOP", "UGA",
+			"STOP", "UGA", "Opal (STOP)",
 		},
 		{
-			"Trp", "UGG",
+			"Trp", "UGG", "Tryptophan",
 		},
 
 
@@ -94,52 +100,52 @@ func main() {
 
 
 		{
-			"Leu", "CUU",
+			"Leu", "CUU", "Leucine",
 		},
 		{
-			"Leu", "CUC",
+			"Leu", "CUC", "Leucine",
 		},
 		{
-			"Leu", "CUA",
+			"Leu", "CUA", "Leucine",
 		},
 		{
-			"Leu", "CUG",
+			"Leu", "CUG", "Leucine",
 		},
 		{
-			"Pro", "CCU",
+			"Pro", "CCU", "Proline",
 		},
 		{
-			"Pro", "CCC",
+			"Pro", "CCC", "Proline",
 		},
 		{
-			"Pro", "CCA",
+			"Pro", "CCA", "Proline",
 		},
 		{
-			"Pro", "CCG",
+			"Pro", "CCG", "Proline",
 		},
 		{
-			"His", "CAU",
+			"His", "CAU", "Histidine",
 		},
 		{
-			"His", "CAC",
+			"His", "CAC", "Histidine",
 		},
 		{
-			"Gin", "CAA",
+			"Gln", "CAA", "Glutamine",
 		},
 		{
-			"Gin", "CAG",
+			"Gln", "CAG", "Glutamine",
 		},
 		{
-			"Arg", "CGU",
+			"Arg", "CGU", "Arginine",
 		},
 		{
-			"Arg", "CGC",
+			"Arg", "CGC", "Arginine",
 		},
 		{
-			"Arg", "CGA",
+			"Arg", "CGA", "Arginine",
 		},
 		{
-			"Arg", "CGG",
+			"Arg", "CGG", "Arginine",
 		},
 
 
@@ -149,52 +155,52 @@ func main() {
 
 
 		{
-			"Ile", "AUU",
+			"Ile", "AUU", "Isoleucine",
 		},
 		{
-			"Ile", "AUC",
+			"Ile", "AUC", "Isoleucine",
 		},
 		{
-			"Ile", "AUA",
+			"Ile", "AUA", "Isoleucine",
 		},
 		{
-			"Met", "AUG",
+			"Met", "AUG", "Methionine",
 		},
 		{
-			"Thr", "ACU",
+			"Thr", "ACU", "Threonine",
 		},
 		{
-			"Thr", "ACC",
+			"Thr", "ACC", "Threonine",
 		},
 		{
-			"Thr", "ACA",
+			"Thr", "ACA", "Threonine",
 		},
 		{
-			"Thr", "ACG",
+			"Thr", "ACG", "Threonine",
 		},
 		{
-			"Asn", "AAU",
+			"Asn", "AAU", "Asparagine",
 		},
 		{
-			"Asn", "AAC",
+			"Asn", "AAC", "Asparagine",
 		},
 		{
-			"Lys", "AAA",
+			"Lys", "AAA", "Lysine",
 		},
 		{
-			"Lys", "AAG",
+			"Lys", "AAG", "Lysine",
 		},
 		{
-			"Ser", "AGU",
+			"Ser", "AGU", "Serine",
 		},
 		{
-			"Ser", "AGC",
+			"Ser", "AGC", "Serine",
 		},
 		{
-			"Arg", "AGA",
+			"Arg", "AGA", "Arginine",
 		},
 		{
-			"Arg", "AGG",
+			"Arg", "AGG", "Arginine",
 		},
 
 
@@ -203,57 +209,57 @@ func main() {
 		*/
 
 		{
-			"Val", "GUU",
+			"Val", "GUU", "Valine",
 		},
 		{
-			"Val", "GUC",
+			"Val", "GUC", "Valine",
 		},
 		{
-			"Val", "GUA",
+			"Val", "GUA", "Valine",
 		},
 		{
-			"Val", "GUG",
+			"Val", "GUG", "Valine",
 		},
 		{
-			"Ala", "GCU",
+			"Ala", "GCU", "Alanine",
 		},
 		{
-			"Ala", "GCC",
+			"Ala", "GCC", "Alanine",
 		},
 		{
-			"Ala", "GCA",
+			"Ala", "GCA", "Alanine",
 		},
 		{
-			"Ala", "GCG",
+			"Ala", "GCG", "Alanine",
 		},
 		{
-			"Asp", "GAU",
+			"Asp", "GAU", "Aspartate",
 		},
 		{
-			"Asp", "GAC",
+			"Asp", "GAC", "Aspartate",
 		},
 		{
-			"Glu", "GAA",
+			"Glu", "GAA", "Glutamate",
 		},
 		{
-			"Glu", "GAG",
+			"Glu", "GAG", "Glutamate",
 		},
 		{
-			"Gly", "GGU",
+			"Gly", "GGU", "Glycine",
 		},
 		{
-			"Gly", "GGC",
+			"Gly", "GGC", "Glycine",
 		},
 		{
-			"Gly", "GGA",
+			"Gly", "GGA", "Glycine",
 		},
 		{
-			"Gly", "GGG",
+			"Gly", "GGG", "Glycine",
 		},
 	}
 
 	for _, value := range proteins {
-		e, err := stmt.Exec(value.Protein, value.Sequence)
+		e, err := stmt.Exec(value.Protein, value.Sequence, value.Name)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -266,4 +272,5 @@ func main() {
 type protein struct {
 	Protein string
 	Sequence string
+	Name string
 }

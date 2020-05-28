@@ -9,11 +9,11 @@ import (
 )
 
 func main() {
-	err := godotenv.Load(".env")
+	err := godotenv.Load(".env.local")
 
 	if err != nil {
 		log.Fatal(err)
-	} else if os.Getenv("USER") == "" || os.Getenv("DATABASE") == "" || os.Getenv("TABLE") == "" {
+	} else if os.Getenv("USER") == "" || os.Getenv("DATABASE") == "" {
 		log.Fatal("No environment variables found.")
 	}
 
