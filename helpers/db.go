@@ -30,7 +30,7 @@ func GetProtein(mRNA string, w http.ResponseWriter, r *http.Request) string {
 	db := connect()
 	err := db.QueryRow("select protein from proteins where sequence = ?", mRNA).Scan(&protein)
 	if err != nil {
-		http.Redirect(w, r, "/", 308)
+		log.Panic(err)
 	}
 
 	return protein
