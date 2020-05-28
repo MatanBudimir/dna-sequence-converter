@@ -66,13 +66,18 @@
 <!--/.Navbar-->
 
 <div class="center">
+    {{ if .DNAValue }}
+        <h6 style="color:white;">DNA Sequence</h6>
+        <textarea readonly class="form-control">{{ .DNAValue }}</textarea>
+        <br>
+    {{ end }}
     {{ if .RNAValue }}
     <h6 style="color:white;">mRNA Sequence</h6>
-    <textarea class="form-control">{{ .RNAValue }}</textarea>
+    <textarea readonly class="form-control">{{ .RNAValue }}</textarea>
     {{ end }}
     {{ if .ProteinValue }}
     <h6 style="color:white;">Protein Sequence</h6>
-    <textarea class="form-control">{{ .Value }}</textarea>
+    <textarea readonly class="form-control">{{ .ProteinValue }}</textarea>
     {{ end }}
     <br>
     <input class="btn btn-primary" onclick="location.href='/'" type="button" value="< Back">

@@ -9,6 +9,7 @@ import (
 type convert struct {
 	RNAValue string
 	ProteinValue string
+	DNAValue string
 	Data *helpers.App
 }
 
@@ -28,11 +29,29 @@ func Convert(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusPermanentRedirect)
 	}
 
-	templates, _ := template.ParseFiles("views/convert.html")
+	if (r.FormValue("type") == "DNA") {
+		templates, _ := template.ParseFiles("views/convert.html")
 
-	converted := helpers.Convert(r.FormValue("sequence"), w, r)
+		format := helpers.AddSpace(r.FormValue("sequence"))
 
-	data := &convert{RNAValue: converted, Data: helpers.Information(r)}
+		converted := helpers.ConvertRNA(format, w, r)
 
-	templates.Execute(w, data)
+		protein := helpers.Protein(converted, w, r)
+
+		data := &convert{RNAValue: converted, Data: helpers.Information(r), DNAValue: format, ProteinValue: protein}
+
+		templates.Execute(w, data)
+	} else if (r.FormValue("type") == "RNA") {
+		templates, _ := template.ParseFiles("views/convert.html")
+
+		format := helpers.AddSpace(r.FormValue("sequence"))
+
+		converted := helpers.ConvertDNA(format, w, r)
+
+		data := &convert{DNAValue: converted, Data: helpers.Information(r), RNAValue: format}
+
+		templates.Execute(w, data)
+	} else {
+
+	}
 }
