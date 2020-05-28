@@ -33,5 +33,7 @@ func GetProtein(mRNA string, w http.ResponseWriter, r *http.Request) string {
 		log.Panic(err)
 	}
 
+	db.Close()
+
 	return protein
 }
