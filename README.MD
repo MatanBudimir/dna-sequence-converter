@@ -1,4 +1,4 @@
-#DNA Sequence Converter
+<h2>DNA Sequence Converter</h2>
 
 Simple tool that converts DNA/RNA sequence to DNA, mRNA and amino acid sequence.
 
